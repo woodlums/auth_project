@@ -65,7 +65,7 @@ def token_required(f):
 
             return jsonify({'message': 'token is invalid', 'exception': ex})
 
-        return f(current_user, *args, **kwargs)
+        return f("uname", *args, **kwargs)
 
     return decorator
 
@@ -103,8 +103,10 @@ def login_user():
 
 @app.route('/user', methods=['GET'])
 @token_required
-def get_all_users():
-    return jsonify({'users': users})
+def get_all_users(current_user):
+    print(current_user)
+    return "yes"
+    #return jsonify({'users': users.values()})
 
 
 if __name__ == '__main__':
